@@ -105,12 +105,6 @@
 	      <url>http://35.183.51.92:8081/repository/Deloitte_snapshot/</url>
 	    </snapshotRepository>
 	</distributionManagement>
-	
-            <server>
-              <id>nexus</id>
-              <username>admin</username>
-              <password>admin123</password>
-           </server>
 
 	<build>
 		<finalName>Paypal</finalName>
