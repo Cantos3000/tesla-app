@@ -1,0 +1,35 @@
+node{
+    def mavenHome = tool name: 'maven3.9.1'
+ stage('1.CodeClone'){
+    git 'https://github.com/Cantos3000/tesla-app'
+ }
+ stage('2mavenBuild'){
+    sh "${mavenHome}/bin/mvn package"
+    }
+stage('3CodeQuality'){
+    sh "${mavenHome}/bin/mvn sonar:sonar"
+}
+stage('4UploadtoNexus'){
+    sh "${mavenHome}/bin/mvn deploy"
+}
+stage('5deploy2UAT'){
+    deploy adapters: [tomcat9(credentialsId: 'Tomcat-credentials', path: '', url: 'http://99.79.67.77:8177/')], contextPath: null, war: 'target/*war'
+}
+stage('6ManualApproval'){
+    sh "echo 'application is ready for review'"
+timeout (time:5, unit:'HOURS'){
+ input message: 'Application is ready for deployment, please review and give feedback'
+}
+}
+stage('7Deploy2Prod'){
+    deploy adapters: [tomcat9(credentialsId: 'Tomcat-credentials', path: '', url: 'http://99.79.67.77:8177/')], contextPath: null, war: 'target/*war'
+}
+stage('8EmailNotification'){
+    emailext body: '''Hello team,
+
+Build is successfully carried out
+
+Thanks, CantonaEric''', recipientProviders: [developers(), contributor(), upstreamDevelopers()], subject: 'Build Status', to: 'trop83@yahoo.com'
+    
+}
+}
