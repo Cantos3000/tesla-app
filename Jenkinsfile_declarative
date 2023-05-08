@@ -1,0 +1,41 @@
+pipeline{
+    agent{
+        label 'Build'
+    }
+tools{
+    maven 'maven3.9.1'
+}
+stages{
+    stage('1Clone'){
+        steps{
+            sh "echo 'cloning the latest application version'"
+            sh "mvn clean"
+            //sh "git clone 'https://github.com/Cantos3000/tesla-app.git'"
+        }
+    }
+stage ('2TestBuild'){
+    steps{
+        sh "echo 'running JUnit-test-case'"
+        sh "echo 'testing must passed to create artifacts'"
+        sh "mvn clean package"
+    }
+}
+stage('3CodeQualityAnalysis'){
+    steps{
+        sh "echo 'Performing CodeQualityAnalysis'"
+        sh "mvn sonar:sonar"
+}
+}
+stage('4UploadArtifacts'){
+    steps{
+        sh "echo 'Uploading Artifacts'"
+        sh "mvn deploy"
+    }
+}
+stage('5Deployment'){
+    steps{
+        deploy adapters: [tomcat9(credentialsId: 'Tomcat-credentials', path: '', url: 'http://99.79.67.77:8177/')], contextPath: null, war: 'target/*war'
+    }
+}
+}
+}
