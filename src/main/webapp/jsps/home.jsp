@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1 align="center">Landmark Technology - Leaders in Software Delivery and DevOps Automation</h1>
-<h2 align="center"> Welcome to Landmark Technology.......We have a demo on DevOps E Degree with Linux and AWS  on Sunday May 14, 2023 at 3PM CDT for our new batch. 
+<h2 align="center"> Welcome to Landmark Technology.......We have a demo - Deloitte Project on DevOps E Degree with Linux and AWS  on Sunday May 14, 2023 at 3PM CDT for our new batch. 
 	Landmark Technology Tesla web application project31. We are developing and supporting quality software solutions to millions of clients globally.
 	We are raising millionaires in IT automation like CANTONA ERIC - a CERTIFIED AWS PROFESSIONAL DevOps ENGINEER and future SENIOR DevOpS ENGINEER.
 	Class32 begins on May 3rd 2023
