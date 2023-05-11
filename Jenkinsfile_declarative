@@ -1,3 +1,5 @@
+@Library('Cantos3000-sharedlibs')_
+
 pipeline{
     agent{
         label 'Build'
